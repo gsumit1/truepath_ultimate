@@ -1,0 +1,167 @@
+<html>
+<head style="color:red; z-index: 1;">
+  <meta charset="UTF-8" />
+  <title>TruePath-Home</title>
+  <script type="text/javascript" src="dialog.js"></script>
+  <script src="jquery.js" type="text/javascript"></script>
+  <script src="init.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<header class='headerBar1'>
+  <div>
+    <span>
+      <B>TRUEPATH</B><I> ultimate</I> : XPath on click
+    </span>
+  </div>
+</header>
+<body style="background-color:#373f46;">
+  <div class='containerXPath'>
+    <div style="height: 22; padding: 2;">
+      <text class='txt'>Page Title:</text>
+    </div>
+    <div>
+      <span>
+        <input type='text' class='xpt topTxtSize' id="pageTitle"></input>
+      </span>
+      <span>
+        <button id="copyPageTitle" class="w3-btn copybtn" title="Copy">Copy</button>
+      </span>
+    </div>
+    <div style="height: 22; padding: 2;">
+      <text class='txt'>Element Name:</text>
+    </div>
+    <div>
+      <span>
+        <input type='text' class='xpt topTxtSize' id="title"></input>
+      </span>
+      <span>
+        <button id="copyTitle" class="w3-btn copybtn" title="Copy">Copy </button>
+      </span>
+    </div>
+    <div style="height: 22;padding: 2;">
+      <text class='txt'>XPath:</text>
+    </div>
+    <div>
+      <span>
+        <input type='text' class='xpt topTxtSize' id="total"></input>
+      </span>
+      <span>
+        <button id="copy" class="w3-btn copybtn" title="Copy">Copy</button>
+      </span>
+    </div>
+    <div style="height: 22; padding: 2;">
+      <text class='txt'>POM XPath:</text>
+    </div>
+    <div>
+      <span>
+        <input type='text' class='xpt topTxtSize' id="serenity"></input>
+      </span>
+      <span>
+        <button id="copySerenityBtn" class="w3-btn copybtn" title="Copy">Copy</button>
+      </span>
+    </div>
+    <div style="height: 22; padding: 2;">
+      <text class='txt'>iFrameURL:</text>
+    </div>
+    <div>
+      <span>
+        <input type='text' class='xpt topTxtSize' id="iFrameURL"></input>
+      </span>
+      <span>
+        <button id="copyiFrameURL" class="w3-btn copybtn" title="Copy">Copy</button>
+      </span>
+    </div>
+  </div>
+  <br>
+  <div>
+  <span style="float: left;" class='labeltxt'>Follow us</span>
+  &nbsp;
+  &nbsp;
+  <span style="float: left;">
+  &nbsp;
+  <a id="youTubeUrl" target=_blank href="https://www.youtube.com/watch?v=YOCCTdBZb6E" title="YouTube Videos on TruePath"><input type="image" src="./icons/yt1.png" alt="Submit" width="18" height="18"/></a>
+  <a id="twitterUrl" target=_blank href="https://twitter.com/Sumit_fresh" title="Connect with me on Twitter"><input type="image" src="./icons/tw1.png" alt="Submit" width="18" height="18"></a>
+  <a id="feedback" target=_blank href="https://chrome.google.com/webstore/detail/truepath/mgjhkhhbkkldiihlajcnlfchfcmhipmn" title="Plesae share your feedback " ><input type="image" src="./icons/feedback.png" alt="Submit" width="18" height="18"></a>
+  <a id="github" target=_blank href="https://github.com/gsumit1/TruePath/issues" title="Github link" ><input type="image" src="./icons/github.png" alt="Submit" width="20" height="20"></a>
+  </span>
+  <span class="warningMessage"   style="float:center; margin-left: 120px; background-color: #ea4335;"></span>
+  <span style="float:right">
+  <button id="add" class="w3-btn btnColor" title="Add the above update on grid">Add</button>
+  <button id="save" class="w3-btn btnColor coolColor" title="Save the above update on the grid">Save</button>
+  </span>
+  </div>
+<br>
+  <text class='txt'>Element List</text>
+  <p class="center" style="align=left;">
+    <table id="elemetTable" border='1' cellpadding="1" cellspacing="0" border="0" cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th style="width: 20%;"><text>Page Title</text></th>
+          <th style="width: 20%;"><text>Name</text></th>
+          <th style="width: 30%;"><text>XPath</text></th>
+          <th style="width: 30%;"><text>POM XPath</text></th>
+          <th style="width: 20%;"><text>FrameURL</text></th>
+          <th style="width: 10%;"><input id="selectAll" name="selectAll" type="checkbox"></input></th>
+        </tr>
+      </thead>
+      <tr id="row0" hidden="true">
+        <td><input class='rowtxt' type="text" id="Page0" name="Page" style="width:98%" value="Title" />
+        </td>
+        <td><input class='rowtxt' type="text" id="Title0" name="Title" style="width:98%" value="XPath Name" />
+        </td>
+        <td><input class='rowtxt' type="text" id="Xpath0" name="Xpath" style="width:98%" value="//div[@id='test']" />
+        </td>
+        <td><input class='rowtxt' type="text" id="xpathPOM0" name="XpathP" style="width:98%" value="@FindBy(xpath="//div[@id='test']")" />
+        </td>
+        <td><input class='rowtxt' type="text" id="Frame0" name="Frame" style="width:98%" value="FrameName" />
+        </td>
+        <td><input name="eles" disabled type="checkbox" /></td>
+        </td>
+      </tr>
+      <tr hidden="true">
+        <td align="center" colspan="5">
+        </td>
+      </tr>
+    </table>
+  </p>
+  <br>
+  <div>
+  <span align:bottom>
+  <button id="add2" class="w3-btn btnColor" title="Add the above update on grid">Add</button>
+  <button id="delBtn" class="w3-btn btnColor redColor" title="Delete any row from the grid">Delete</button>
+  <button id="edit" class="w3-btn btnColor" title="Edit any row from the grid">Edit</button>
+  <button id="imp" class="w3-btn btnColor coolColor" title="Export">Export</button>
+  <select id="downloadtype" class="w3-btn btnColor coolColor dropDownHeight" title="Please select the export type">
+          <option class=fileNameDDoption value="Select">Select</option>
+          <option class=fileNameDDoption value="Java">Java</option>
+          <option class=fileNameDDoption value="Robot">Robot</option>
+          <option class=fileNameDDoption value="C#">C#</option>
+          <option class=fileNameDDoption value="Excel">Excel</option>
+  </select>
+  </span>
+  <span>
+    <input type='text' class='xpt bottomTxtSize' id="fileTxtBox" Value="Please Write File Name" style="display:none"></input>
+  </span>
+  </div>
+  <br>
+</body>
+<footer style="position: fixed;left: 0;bottom: 0;width: 100%; background-color:#373f46;">
+  <div>
+  <span style="float: left; display: inline-block;vertical-align: bottom;">
+    <a target=_blank href="https://www.youtube.com/watch?v=Odm-GocgkZI" title="YouTube Video on TruePath-Locator Analyzer">
+      <input type="image" src="/icons/youtube.png" alt="Submit" width="20" height="20" /></a>
+  </span>
+  &nbsp;
+  <span id="Exportlbl"style="float: left; font-size: 10px"class='labeltxt'>Use TP-Locator Analyzer for the analysis of existing code</span>
+  &nbsp;
+  <span style="float: right;">
+      <span class='labeltxt'>Share </span>
+      &nbsp;
+      <a id="fb" title="Plesae share this extension on FaceBook" data-js="facebook-share"><input type="image" src="./icons/fb.png" alt="Submit" width="15" height="15"/></a>
+      <a id="tw" title="Plesae share this extension on Twitter"><input type="image" src="./icons/tw.png" alt="Submit" width="15" height="15"></a>
+      <a id="in" title="Plesae share this extension on LinkedIn " ><input type="image" src="./icons/in.png" alt="Submit" width="15" height="15"></a>
+      <a id="ol" title="Plesae share this extension on OutLook" ><input type="image" src="./icons/ol.png" alt="Submit" width="15" height="15"></a>
+  </span>
+</div>
+</footer>
+</html>

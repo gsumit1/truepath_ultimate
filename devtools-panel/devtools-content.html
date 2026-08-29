@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>TruePath</title>
+    <link rel="stylesheet" id="cssFile" type="text/css" href="devtoolsForDefaultTheme.css" />
+</head>
+<body>
+	<div class="header">
+		<div class="header1">
+			<span type="text" font-size="12px" color="#4e4d4d" font-weight="500">xpath </span>
+			<div class="selector-edit-box">
+                <span class="iframeIcon" title="Inside iframe. Inspect any element outside iframe to switch to top dom.">if..</span>
+				<input id="textBoxXPath" type="text" class="xpath-input jsXpath" placeholder="Type XPath and press enter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value=""/>
+			</div>
+			<button id="custom" class="copy-btn box relCopyButton" title="click to copy Normal XPath"></button>
+			<button id="customPOM" class="copy-btn box relCopyButton" title="click to copy POM XPath"></button>
+		</div>
+		<div>
+			<div class="iframeDetails">
+				<span class="total-count returnNodeCount hideCountMsg"></span>
+				<button id="helpButton" class="other-btn help" title="click here for help">Help</button>
+				<button id="feedbackButton" class="other-btn feedback" title="Please click here to provide feedback">Like</button>
+			</div>
+		</div>
+	</div>
+	<ul class='selectorsBlock', id="xpathContainer">
+		<!--
+    <li class='iframeDetails23' id="frame"></li>
+  -->
+		<span type="text" class="box jsSelector rel" placeholder="get the relative xpath here"></span>
+	 </ul>
+
+	<ul id="eleContainer">
+	</ul>
+	<script src="devtools-script.js"></script>
+</body>
+</html>
