@@ -20,16 +20,7 @@ var flag2 = 0;
 var win = null;
 var flagMenu = true;
 var oldParent=[];
-try {
-       removeOldMenuItems();
-        var parent = chrome.contextMenus.create({
-            id:"truepath",
-            "title": "Relative XPath",
-            "contexts": ["all"]
-        });
-        console.log("How many times main menu created "+parent)
-        
-} catch (err) {}
+var parent = "truepath"; // Use string ID instead of numeric return value
 var oldValue = [];
 var menuID;
 var iFrame;
@@ -41,6 +32,45 @@ var isInFrame;
 var details = [];
 var pageTitle = "NA";
 var elementName = "NA";
+
+// Initialize context menu on install or update
+chrome.runtime.onInstalled.addListener(function(details) {
+    console.log('TruePath: Extension installed/updated, creating context menu');
+    createMainContextMenu();
+});
+
+// Recreate context menu on browser startup (service worker restart)
+chrome.runtime.onStartup.addListener(function() {
+    console.log('TruePath: Browser startup, ensuring context menu exists');
+    createMainContextMenu();
+});
+
+// Create main context menu - handles duplicates gracefully
+function createMainContextMenu() {
+    // Remove all existing menus first to prevent duplicates
+    chrome.contextMenus.removeAll(function() {
+        if (chrome.runtime.lastError) {
+            console.log('TruePath: No existing menus to remove');
+        }
+        
+        // Create the main parent menu
+        chrome.contextMenus.create({
+            id: "truepath",
+            title: "Relative XPath",
+            contexts: ["all"]
+        }, function() {
+            if (chrome.runtime.lastError) {
+                console.error('TruePath: Error creating menu:', chrome.runtime.lastError.message);
+            } else {
+                console.log('TruePath: Main context menu created successfully');
+            }
+        });
+    });
+}
+
+// Ensure menu exists when service worker loads
+// This handles cases where service worker activates for reasons other than install/startup
+createMainContextMenu();
 
 
 try {
@@ -91,9 +121,17 @@ var removeOldMenuItems = function () {
     if (oldValue.length > 0) {
         try {
             for (var i = 0; i < oldValue.length; i++) {
-                chrome.contextMenus.remove(oldValue[i], () => void chrome.runtime.lastError);
+                chrome.contextMenus.remove(oldValue[i], () => {
+                    // Suppress expected errors for already-removed menus
+                    void chrome.runtime.lastError;
+                });
             }
-        } catch (err) {}
+            // Clear the array after attempting to remove all items
+            oldValue = [];
+        } catch (err) {
+            console.error('TruePath: Error removing menu items:', err);
+            oldValue = []; // Clear anyway to prevent buildup
+        }
     }
 }
 
