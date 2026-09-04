@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shadow DOM Test Page</title>
+</head>
+<body>
+  <h1>TruePath Shadow DOM Test</h1>
+  <p>This page contains open shadow roots for testing.</p>
+
+  <my-app></my-app>
+
+  <script>
+    customElements.define('my-app', class extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.innerHTML = `
+          <user-card data-testid="user-card-1">
+            <template shadowroot="open">
+              <button class="submit-btn" data-testid="submit-button">Submit</button>
+            </template>
+          </user-card>
+        `;
+      }
+    });
+
+    customElements.define('user-card', class extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.innerHTML = `
+          <div class="card">
+            <button class="submit-btn" data-testid="submit-button">Submit</button>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -18,6 +18,7 @@
       "match_about_blank": true,
       "matches": ["http://*/*", "https://*/*"],
       "js": [
+        "content-script/shadow-utils.js",
         "content-script/contentScript1.js",
         "content-script/content.js",
         "content-script/contentScript2.js",

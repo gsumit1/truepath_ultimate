@@ -241,6 +241,12 @@ window.addEventListener("mousedown", function(event) {
       resultArrays.push(isInIFrameFlag);
       resultArrays.push(pageTitle);
       resultArrays.push(elementName);
+
+      var shadowPath = tpBuildShadowSelectorPath(node);
+      resultArrays.push(shadowPath.isInShadowDOM ? 'Yes' : 'No');
+      resultArrays.push(shadowPath.hostChain);
+      resultArrays.push(tpGeneratePlaywrightShadowLocator(node));
+      resultArrays.push(tpGenerateSeleniumShadowCode(node));
     }
 
     var tempXpath = ["xpathInfo", resultArrays]

@@ -32,6 +32,10 @@ var isInFrame;
 var details = [];
 var pageTitle = "NA";
 var elementName = "NA";
+var isInShadowDOM = "No";
+var shadowHostChain = [];
+var playwrightShadow = "";
+var seleniumShadow = "";
 
 // Initialize context menu on install or update
 chrome.runtime.onInstalled.addListener(function(details) {
@@ -87,6 +91,10 @@ var showInfo = function (xpath) {
     isInFrame = xpath[4];
     pageTitle = xpath[5];
     elementName = xpath[6];
+    isInShadowDOM = xpath[7] || 'No';
+    shadowHostChain = xpath[8] || [];
+    playwrightShadow = xpath[9] || '';
+    seleniumShadow = xpath[10] || '';
     removeOldMenuItems();
     if (browser_version > 55 && browser_name === 'Firefox') {
         uniqueXpath(xpath);
@@ -263,8 +271,9 @@ chrome.contextMenus.onClicked.addListener(openPlane);
 function openPlane(data, tab) {
     win = tab.windowId;
     if (flag2 == 1) {
+        var shadowHostChainStr = Array.isArray(shadowHostChain) ? shadowHostChain.join(' > ') : '';
         chrome.runtime.sendMessage({
-            xpath: data.menuItemId + "@@@@" + pageTitle + "@@@@" + elementName + "@@@@" + isInFrame + "@@@@" + iFrameUrl
+            xpath: data.menuItemId + "@@@@" + pageTitle + "@@@@" + elementName + "@@@@" + isInFrame + "@@@@" + iFrameUrl + "@@@@" + isInShadowDOM + "@@@@" + shadowHostChainStr + "@@@@" + playwrightShadow + "@@@@" + seleniumShadow
         }, function (response) {});
         return;
     } else {
@@ -342,6 +351,10 @@ var saveClickMenuInfo = function (xpath) {
     compositeDataTracker.push(isInFrame);
     compositeDataTracker.push(pageTitle);
     compositeDataTracker.push(elementName);
+    compositeDataTracker.push(isInShadowDOM);
+    compositeDataTracker.push(shadowHostChain);
+    compositeDataTracker.push(playwrightShadow);
+    compositeDataTracker.push(seleniumShadow);
 }
 /*******************************************************************/
 var messageToContentScript = function (message) {

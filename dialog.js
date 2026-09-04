@@ -64,6 +64,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   var title = request.xpath.split("@@@@")[2];
   var isInFrame = request.xpath.split("@@@@")[3];
   var iFrameUrl = request.xpath.split("@@@@")[4];
+  var isInShadowDOM = request.xpath.split("@@@@")[5] || 'No';
+  var shadowHostChain = request.xpath.split("@@@@")[6] || '';
+  var playwrightShadow = request.xpath.split("@@@@")[7] || '';
+  var seleniumShadow = request.xpath.split("@@@@")[8] || '';
 
   if ((pageTitle === "undefined") && (title === "undefined") && (iFrameUrl === "undefined")) {
     document.querySelector(".warningMessage").innerHTML = "Unable to process now";
@@ -86,6 +90,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     document.getElementById('total').value = xpath2;
     document.getElementById('serenity').value = "@FindBy(xpath = " + "\"" + xpath2 + "\")";
     document.getElementById('iFrameURL').value = iFrameUrl;
+    document.getElementById('shadowDOM').value = isInShadowDOM;
+    document.getElementById('shadowHostChain').value = shadowHostChain;
+    document.getElementById('playwrightShadow').value = playwrightShadow;
+    document.getElementById('seleniumShadow').value = seleniumShadow;
     insertNewRow();
   } catch (err) {}
 });
@@ -104,6 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("#copyPageTitle").addEventListener("click", copyPageTitle);
     document.querySelector("#copySerenityBtn").addEventListener("click", copySerenity);
     document.querySelector("#copyiFrameURL").addEventListener("click", copyFrameUrl);
+    document.querySelector("#copyShadowDOM").addEventListener("click", copyShadowDOM);
+    document.querySelector("#copyShadowHostChain").addEventListener("click", copyShadowHostChain);
+    document.querySelector("#copyPlaywrightShadow").addEventListener("click", copyPlaywrightShadow);
+    document.querySelector("#copySeleniumShadow").addEventListener("click", copySeleniumShadow);
     document.querySelector("#add").addEventListener("click", insertNewRow);
     document.querySelector("#add2").addEventListener("click", insertNewRow);
     document.querySelector("#imp").addEventListener("click", downloadOption);
@@ -186,6 +198,30 @@ function copyFrameUrl() {
   copyText.select();
   document.execCommand("copy");
 //  _gaq.push(['_trackEvent', 'iFrameURL', 'clicked']);
+}
+
+function copyShadowDOM() {
+  var copyText = document.querySelector("#shadowDOM");
+  copyText.select();
+  document.execCommand("copy");
+}
+
+function copyShadowHostChain() {
+  var copyText = document.querySelector("#shadowHostChain");
+  copyText.select();
+  document.execCommand("copy");
+}
+
+function copyPlaywrightShadow() {
+  var copyText = document.querySelector("#playwrightShadow");
+  copyText.select();
+  document.execCommand("copy");
+}
+
+function copySeleniumShadow() {
+  var copyText = document.querySelector("#seleniumShadow");
+  copyText.select();
+  document.execCommand("copy");
 }
 
 function copyTitle() {

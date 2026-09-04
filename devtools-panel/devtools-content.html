@@ -29,6 +29,21 @@
 		<span type="text" class="box jsSelector rel" placeholder="get the relative xpath here"></span>
 	 </ul>
 
+	<div id="shadowContainer" class="shadowDetails" style="display:none;">
+		<div class="shadowHeader">Shadow DOM detected</div>
+		<div>Hosts: <span id="shadowHostChain"></span></div>
+		<div>
+			<span>Playwright:</span>
+			<input type="text" id="playwrightShadow" class="xpath-input" readonly/>
+			<button id="copyPlaywrightShadow" class="copy-btn box relCopyButton" title="Copy Playwright locator"></button>
+		</div>
+		<div>
+			<span>Selenium:</span>
+			<textarea id="seleniumShadow" class="xpath-input" rows="3" readonly></textarea>
+			<button id="copySeleniumShadow" class="copy-btn box relCopyButton" title="Copy Selenium code"></button>
+		</div>
+	</div>
+
 	<ul id="eleContainer">
 	</ul>
 	<script src="devtools-script.js"></script>

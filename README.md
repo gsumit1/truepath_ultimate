@@ -10,6 +10,7 @@
 - ✅ **Multiple XPath Strategies** - Generate XPath with different attributes (id, class, name, index)
 - ✅ **Clipboard Support** - One-click copy XPath to clipboard
 - ✅ **iFrame Support** - Detect and handle elements inside iframes
+- ✅ **Shadow DOM Support** - Detect shadow roots and generate Selenium/Playwright traversal code
 - ✅ **Page Object Model** - Auto-generate POM code for Java, C#, and Robot Framework
 
 ## 📋 Requirements
@@ -86,7 +87,8 @@ TruePath_Chrome_1.0.0/
 ├── content-script/
 │   ├── content.js           # XPath generation logic
 │   ├── contentScript1.js    # Element detection
-│   └── contentScript2.js    # Additional handlers
+│   ├── contentScript2.js    # Additional handlers
+│   └── shadow-utils.js      # Shadow DOM detection and traversal code
 ├── devtools-panel/
 │   ├── devtools.html        # DevTools panel entry
 │   ├── devtools.js          # Panel initialization

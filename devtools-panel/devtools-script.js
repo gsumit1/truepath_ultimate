@@ -294,6 +294,9 @@ function generateXPath() {
     console.log("result "+result);
     clearElements();
     removeXpathContainer();
+    try {
+      document.getElementById("shadowContainer").style.display = "none";
+    } catch (err) {}
 
     try {
 
@@ -409,6 +412,24 @@ function generateXPath() {
         instanceDropdown.oneStar = 1;
       }
     } catch (err) {}
+
+    try {
+      var shadowContainer = document.getElementById("shadowContainer");
+      if (result[9] === 'Yes') {
+        shadowContainer.style.display = "block";
+        document.getElementById("shadowHostChain").innerText = Array.isArray(result[8]) ? result[8].join(' > ') : '';
+        document.getElementById("playwrightShadow").value = result[10] || '';
+        document.getElementById("seleniumShadow").value = result[11] || '';
+        document.getElementById("copyPlaywrightShadow").addEventListener("click", function() {
+          copyToClip(result[10] || '');
+        });
+        document.getElementById("copySeleniumShadow").addEventListener("click", function() {
+          copyToClip(result[11] || '');
+        });
+      } else {
+        shadowContainer.style.display = "none";
+      }
+    } catch (err) {}
     //createIframe();
   })
 };
@@ -471,6 +492,18 @@ var copyDetails = function(value, XPathType, type) {
   } else {
     textarea.value = "@FindBy("+type+" = " + "\"" + value + "\")";
   }
+  let selector = document.querySelector('#t');
+  selector.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea)
+}
+
+var copyToClip = function(value) {
+  let textarea = document.createElement('textarea');
+  textarea.id = 't';
+  textarea.style.height = 0;
+  document.body.appendChild(textarea);
+  textarea.value = value;
   let selector = document.querySelector('#t');
   selector.select();
   document.execCommand('copy');

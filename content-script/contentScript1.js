@@ -270,6 +270,12 @@ function generateRelXpath(element) {
     resultArrays.push(nameElement);
     resultArrays.push(createAbsXpath(element));
 
+    var shadowPath = tpBuildShadowSelectorPath(element);
+    resultArrays.push(shadowPath.hostChain);
+    resultArrays.push(shadowPath.isInShadowDOM ? 'Yes' : 'No');
+    resultArrays.push(tpGeneratePlaywrightShadowLocator(element));
+    resultArrays.push(tpGenerateSeleniumShadowCode(element));
+
   }
   return resultArrays;
   //  chrome.runtime.sendMessage(resultArrays);
